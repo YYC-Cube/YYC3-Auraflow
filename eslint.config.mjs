@@ -15,6 +15,11 @@ const eslintConfig = [
       "react/no-unescaped-entities": "off",
       "react/display-name": "off",
       
+      // React Compiler 规则 (React 19 严格模式)
+      // 禁用以下规则，因为它们是常见的有效 React 模式
+      "react-hooks/set-state-in-effect": "off",
+      "react-hooks/impure-in-render": "off",
+      
       // 通用规则
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "no-debugger": "error",

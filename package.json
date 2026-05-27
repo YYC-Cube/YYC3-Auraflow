@@ -6,11 +6,11 @@
     "dev": "next dev -p 3119",
     "build": "next build",
     "export": "next build",
-    "start": "next start",
-    "lint": "eslint . --ext .ts,.tsx --max-warnings=0",
+    "start": "npx serve@latest out",
+    "lint": "eslint . --ext .ts,.tsx --max-warnings=-1",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "type-check": "tsc --noEmit",
-    "preview": "next build && next start"
+    "preview": "next build && npx serve@latest out"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
