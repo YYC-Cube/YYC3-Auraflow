@@ -5,8 +5,13 @@ import AnimatedGradientBackground from "@/components/ui/animated-gradient-backgr
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { ClosedLoopSection } from "@/components/ui/closed-loop-section"
+import { FiveDimensionsSection } from "@/components/ui/five-dimensions-section"
+import { FiveHighsSection } from "@/components/ui/five-highs-section"
+import { FiveStandardsSection } from "@/components/ui/five-standards-section"
 import { Navbar } from "@/components/ui/navbar"
 import { Pricing } from "@/components/ui/pricing"
+import { SEO, StructuredData } from "@/components/ui/seo"
 import { SparklesCore } from "@/components/ui/sparkles"
 import { SplineScene } from "@/components/ui/spline-scene"
 import { Spotlight } from "@/components/ui/spotlight"
@@ -26,7 +31,9 @@ import {
   MapPin,
   MessageSquare,
   Phone,
+  Quote,
   Share2,
+  Sparkles,
   TrendingUp,
   Workflow
 } from "lucide-react"
@@ -36,6 +43,39 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-black">
+      {/* SEO Optimization */}
+      <SEO
+        title={`${t.brand?.shortName || "YYC³"} - ${t.hero.title}`}
+        description={t.hero.subtitle}
+        keywords={[
+          "YYC³",
+          "YanYuCloudCube",
+          "AI",
+          "Next.js",
+          "React",
+          "TypeScript",
+          "五高架构",
+          "五标规范",
+          "闭环管理",
+        ]}
+      />
+
+      <StructuredData
+        type="Organization"
+        data={{
+          name: t.brand?.fullName || "YYC³ AuraFlow",
+          description: "五高架构 · 五标规范 · 五维评估 · 闭环管理",
+        }}
+      />
+
+      <StructuredData
+        type="WebSite"
+        data={{
+          name: "YYC³ AuraFlow",
+          description: "AI驱动的智能应用开发平台",
+        }}
+      />
+
       {/* Navigation Component */}
       <Navbar />
 
@@ -48,7 +88,19 @@ export default function HomePage() {
             <div className="flex h-full">
               {/* Left content */}
               <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
-                <h1 className="text-4xl md:text-5xl font-bold text-white bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text">
+                {/* Brand Identity */}
+                <div className="mb-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-linear-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 text-sm text-blue-300 mb-3">
+                    <Sparkles className="h-4 w-4" />
+                    <span className="font-semibold">{t.brand?.fullName || "YYC³ AuraFlow"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-400 font-mono mb-4">
+                    <Quote className="h-3 w-3 text-purple-400" />
+                    <span className="italic">{t.brand?.motto || "言启千行代码，语枢万物智能"}</span>
+                  </div>
+                </div>
+
+                <h1 className="text-4xl md:text-5xl font-bold text-white bg-linear-to-b from-neutral-50 to-neutral-400 bg-clip-text">
                   {t.hero.title}
                 </h1>
                 <p className="mt-4 text-neutral-300 max-w-lg">{t.hero.subtitle}</p>
@@ -293,6 +345,18 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Team Culture - Five Highs Architecture */}
+      <FiveHighsSection />
+
+      {/* Team Culture - Five Standards System */}
+      <FiveStandardsSection />
+
+      {/* Team Culture - Five Dimensions Evaluation */}
+      <FiveDimensionsSection />
+
+      {/* Team Culture - Closed Loop Philosophy */}
+      <ClosedLoopSection />
 
       {/* Pricing Section */}
       <section className="py-24 bg-black">
