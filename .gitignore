@@ -30,3 +30,6 @@ next-env.d.ts
 # OS files
 .DS_Store
 Thumbs.db
+
+# team internal docs (local only, not for remote)
+docs/10-团队通用指南/
