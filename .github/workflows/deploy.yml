@@ -1,0 +1,107 @@
+name: CI/CD Pipeline - YYC³ AuraFlow
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: 9
+  SITE_URL: https://aureflow.yyc3.top
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: 🔧 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 📋 Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: 💾 Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: 🚀 Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🔍 Run Linting
+        run: pnpm lint
+        continue-on-error: true
+
+      - name: 🏗️ Build Project
+        id: build
+        run: pnpm build
+        env:
+          NODE_ENV: production
+          NEXT_PUBLIC_SITE_URL: ${{ env.SITE_URL }}
+
+      - name: 📊 Build Summary
+        if: always()
+        run: |
+          echo "## 🎯 Build Status" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.build.outcome }}" == "success" ]; then
+            echo "✅ **Build Successful**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 📦 Build Artifacts" >> $GITHUB_STEP_SUMMARY
+            du -sh out/ 2>/dev/null || echo "No output directory"
+            ls -la out/ 2>/dev/null | head -20 || echo ""
+          else
+            echo "❌ **Build Failed**" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: ⚙️ Setup Pages
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: actions/configure-pages@v5
+
+      - name: 📤 Upload Artifact
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+      - name: 🚀 Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: ✅ Deployment Summary
+        if: steps.deployment.outcome == 'success'
+        run: |
+          echo "## 🚀 Deployment Successful" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**🔗 Live URL:** ${{ env.SITE_URL }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**🕐 Deployed at:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**👤 Triggered by:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY

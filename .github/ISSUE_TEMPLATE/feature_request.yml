@@ -1,0 +1,110 @@
+name: Feature Request
+description: Suggest an idea for YYC³ AuraFlow
+labels: ['enhancement', 'triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please provide as much detail as possible to help us understand your vision.
+
+  - type: input
+    id: feature-title
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of the feature you'd like to see
+      placeholder: e.g., Add dark mode toggle to the navigation bar
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation / Use Case
+      description: Why do you need this feature? What problem does it solve?
+      placeholder: |
+        As a user, I want to be able to switch between light and dark modes so that I can use the app comfortably in different lighting conditions.
+
+        Currently, the app only supports light mode which makes it difficult to use at night or in low-light environments.
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: Describe how you envision this feature working
+      placeholder: |
+        1. Add a sun/moon icon in the top-right corner of the navbar
+        2. Clicking it toggles between light and dark themes
+        3. Preference is saved to localStorage
+        4. Use next-themes for implementation
+      render: markdown
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative solutions or workarounds?
+      placeholder: I've tried using browser extensions but they don't work well with this specific design system...
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups / Examples
+      description: If applicable, add mockups, wireframes, or examples
+      placeholder: Drag and drop images here or link to external resources
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Must have - Critical for my use case
+        - Should have - Important but can wait
+        - Nice to have - Would improve experience
+        - Future consideration - Interesting idea
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Estimated Complexity
+      description: How complex do you think this feature would be to implement?
+      options:
+        - Simple - Can be done in a few hours
+        - Moderate - Requires some planning
+        - Complex - Significant development effort needed
+        - Unknown - Not sure about the technical details
+
+  - type: checkboxes
+    id: willingness
+    attributes:
+      label: Contribution
+      description: Are you willing to contribute to this feature?
+      options:
+        - label: Yes, I want to implement this myself
+        - label: Yes, I can help with testing/documentation
+        - label: No, I'm just suggesting the idea
+        - label: Maybe, depending on guidance
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before Submitting
+      description: Please confirm the following
+      options:
+        - label: I have checked that this feature doesn't already exist
+          required: true
+        - label: I have searched existing feature requests and found no duplicates
+          required: true
+        - label: This feature aligns with the project's goals and philosophy
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        Thank you for your feature suggestion! We appreciate your contribution to making YYC³ AuraFlow better. 💡

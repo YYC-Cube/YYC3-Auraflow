@@ -1,0 +1,130 @@
+name: Bug Report
+description: File a bug report to help us improve YYC³ AuraFlow
+labels: ['bug', 'triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please provide as much detail as possible so we can quickly address the issue.
+
+  - type: input
+    id: bug-title
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: e.g., Navigation menu doesn't close on mobile after clicking a link
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+      render: bash
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen
+      placeholder: The navigation menu should close automatically when a link is clicked
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+      placeholder: The navigation menu stays open after clicking a link
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem
+      placeholder: Drag and drop or paste screenshots here
+
+  - type: dropdown
+    id: environment-browser
+    attributes:
+      label: Browser
+      description: Which browser are you using?
+      multiple: false
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: environment-os
+    attributes:
+      label: Operating System
+      description: Which OS are you using?
+      placeholder: macOS / Windows / Linux / iOS / Android
+    validations:
+      required: true
+
+  - type: input
+    id: environment-node
+    attributes:
+      label: Node.js Version
+      description: Run `node --version` to check
+      placeholder: v20.x.x
+    validations:
+      required: true
+
+  - type: input
+    id: environment-pnpm
+    attributes:
+      label: pnpm Version
+      description: Run `pnpm --version` to check
+      placeholder: 9.x.x
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this bug?
+      options:
+        - Critical - App crashes or data loss
+        - High - Major functionality broken
+        - Medium - Partial functionality affected
+        - Low - Minor issue or cosmetic problem
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before Submitting
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues and found no duplicates
+          required: true
+        - label: I can reproduce this bug consistently
+          required: true
+        - label: This is not a security vulnerability (security issues should be reported privately)
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        Thank you for filing a bug report! We will review it as soon as possible. 🙏
