@@ -8,6 +8,7 @@ import type React from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://aureflow.yyc3.top"),
   title: "YYC³ AuraFlow - AI 驱动的智能应用",
   description: "言启千行代码，语枢万物智能 - YYC³ (YanYuCloudCube) 智能应用平台",
   keywords: ["YYC3", "AuraFlow", "AI", "智能应用", "自动化", "聊天机器人"],

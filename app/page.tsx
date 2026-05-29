@@ -37,6 +37,7 @@ import {
   TrendingUp,
   Workflow
 } from "lucide-react"
+import Image from "next/image"
 
 export default function HomePage() {
   const { t } = useLocale()
@@ -486,7 +487,10 @@ export default function HomePage() {
             {/* Company Info */}
             <div className="lg:col-span-1 space-y-6">
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-white">AI Agency</h3>
+                <div className="flex items-center gap-3">
+                  <Image src="/yyc3-dist/yanyu_cloud_128x128.png" alt="YYC³" width={36} height={36} className="rounded-lg" />
+                  <h3 className="text-2xl font-bold text-white">YYC³ AuraFlow</h3>
+                </div>
                 <p className="text-gray-300 leading-relaxed">{t.footer.description}</p>
               </div>
 

@@ -20,7 +20,7 @@ export function SEO({
   title = "YYC³ AuraFlow - AI 驱动的智能应用开发平台",
   description = "基于五高架构、五标规范、五维评估体系的AI驱动智能应用开发平台。提供高可用、高性能、高安全、高扩展、高智能的完整解决方案。",
   keywords = ["YYC³", "YanYuCloudCube", "AI", "Next.js", "React", "TypeScript", "五高架构", "五标规范", "闭环管理"],
-  ogImage = "/og-image.png",
+  ogImage = "/yyc3-dist/yanyu_cloud_512x512.png",
   url = typeof window !== "undefined" ? window.location.origin : "https://aureflow.yyc3.top",
   type = "website",
   locale = "zh_CN",
