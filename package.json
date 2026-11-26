@@ -52,7 +52,7 @@
     "@tsparticles/react": "latest",
     "@tsparticles/slim": "latest",
     "@vercel/analytics": "latest",
-    "@yyc3/i18n-core": "^2.4.0",
+    "@yyc3/i18n-core": "^3.6.1",
     "autoprefixer": "^10.4.20",
     "canvas-confetti": "latest",
     "class-variance-authority": "^0.7.1",
